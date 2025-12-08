@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over mij</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #a9a9a9ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><?php echo "Welkom op mijn eerste over mij PHP-pagina"; ?></h1>
+        <p>Vandaag is het <?php echo date("l, d F Y");?>.</p>
+        <p>De tijd nu is <?php echo date("H:i:s"); ?>.</p>
+        <form action="verwerk_registratie.php" method="POST">
+            <input type="text" name="naam"  placeholder="Vul hier je naam in" required>
+            <input type="email" name="email"  placeholder="Vul hier je email in" required>
+            <input type="password" name="wachtwoord"  placeholder="Vul hier je wachtwoord in" required>
+            <input type="password" name="wachtwoord2"  placeholder="Vul hier je wachtwoord opnieuw in" required>
+            <?php
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == 'passwords_dont_match') {
+                        echo '<p style="color:red;">De wachtwoorden komen niet overeen. Probeer het opnieuw.</p>';
+                    } elseif ($_GET['error'] == 'email_invalid') {
+                        echo '<p style="color:red;">Het opgegeven e-mailadres is ongeldig. Probeer het opnieuw.</p>';
+                    }
+                }
+                ?>
+            <input type="submit" value="Ga naar de welkom pagina">
+        </form>
+    </div>
+</body>
+</html>
